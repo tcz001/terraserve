@@ -1,0 +1,21 @@
+<!doctype html>
+  <html>
+    <head>
+      <link rel="stylesheet" href="node_modules/xterm/css/xterm.css" />
+      <script src="node_modules/xterm/lib/xterm.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+      <div id="terminal"></div>
+      <script>
+	//var term = new Terminal();
+	var term = new Terminal({convertEol: true});
+        term.open(document.getElementById('terminal'));
+	axios.get('http://localhost:8888/'+window.location.search)
+		.then(function(response){
+			console.log(response)
+			term.write(response.data)
+		});
+      </script>
+    </body>
+  </html>
